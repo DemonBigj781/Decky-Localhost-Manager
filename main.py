@@ -76,7 +76,7 @@ class Plugin:
             try:
                 with socket.create_connection(("127.0.0.1", port), timeout=0.15) as sock:
                     sock.settimeout(0.2)
-                    sock.sendall(b"HEAD / HTTP/1.0\\r\\nHost: localhost\\r\\n\\r\\n".replace(b"\\r",b"\r").replace(b"\\n",b"\n"))
+                    sock.sendall(b"HEAD / HTTP/1.0\r\nHost: localhost\r\n\r\n")
                     data = sock.recv(32)
                     if data.startswith(b"HTTP/"):
                         found.append({"name": f"Port {port}", "url": f"http://127.0.0.1:{port}"})
